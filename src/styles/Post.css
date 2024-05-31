@@ -1,0 +1,258 @@
+/* Baseline mobile */
+
+.post {
+    padding: 20px;
+    margin-bottom: 20px;
+
+    border: solid;
+    border-width: 1px;
+    border-radius: 15px;
+}
+
+.post-content {
+    text-align: left;
+}
+
+.post h2 {
+    margin-top: 0;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.post img {
+    max-width: 100%;
+}
+
+.post-additional {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-details {
+    display: flex;
+    font-size: 14px;
+}
+
+.post-edit {
+    width: 210px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-edit button {
+    height: 40px;
+    width: 100px;
+}
+
+#modal {
+    margin: 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+#modal h2 {
+    margin-top: -10px;
+    font-size: 18px;
+}
+
+#modal img {
+    margin-top: 20px;
+    max-height: 100%;
+}
+
+#modal_header {
+    display: flex;
+    justify-content: space-between;
+    
+    padding-top: 10px;
+}
+
+#modal p {
+    font-size: 14px;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    max-width: 40px;
+    max-height: 40px;
+    margin-top: -10px;
+    margin-left: 10px;
+}
+
+/* disable scrolling on the body */
+.no-scroll {
+    overflow: hidden;
+}
+
+/* Delete modal */
+.modal-del-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-del-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.modal-del-content h2 {
+    margin-top: 0;
+}
+
+.modal-del-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-del-content button:first-child {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.modal-del-content button:last-child {
+    background-color: #bdc3c7;
+    color: black;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+
+    margin: 0 20px 0 20px;
+}
+
+.modal-content h2 {
+    margin-top: 5px;
+}
+
+.del-actions {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.del-actions button {
+    height: 40px;
+    width: 100px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.del-actions .confirm {
+    border: none;
+    background-color: white;
+    text-decoration: underline;
+}
+
+
+
+
+/* -------------------------------------------- */
+/* Styles for desktop devices (768px and above) */
+@media (min-width: 768px) {
+
+    .post {
+        padding: 40px;
+        margin-bottom: 30px;
+        border-radius: 20px;
+    }
+
+    .post h2 {
+        font-size: 26px;
+    }
+
+    .post h2:hover {
+        color: #fc2e07;
+    }
+
+    .post img {
+        max-width: 500px;
+        cursor: pointer;
+    }
+
+    .post-additional {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .post-actions {
+        display: flex;
+    }
+
+    .post-edit {
+        width: 150px;
+    }
+
+    .post-edit button {
+        height: 30px;
+        width: 70px;
+    }
+
+    #modal {
+        margin: 30px;
+    }
+
+    #modal_header {
+        position: sticky;
+        top: -20px;
+        background: white; /* Ensure background covers content behind */
+        z-index: 10; /* Ensure it stays on top of other content */
+    
+        padding-top: 30px;
+    }
+
+    #modal p {
+        font-size: 16px;
+    }
+
+    #modal h2 {
+        margin-top: 0;
+        font-size: 22px;
+    }
+
+    .close-modal {
+        margin-top: -5px;
+        margin-left: 200px;
+    }
+
+
+    /* Delete modal */
+    .modal-content {
+        margin: 0;
+    }
+
+}

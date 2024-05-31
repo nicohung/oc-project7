@@ -1,0 +1,95 @@
+/* Baseline mobile */
+
+.App {
+    margin-bottom: 50px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.App input {
+    margin-bottom: 20px;
+    height: 30px;
+}
+
+.alert {
+    color: red;
+    padding-bottom: 10px;
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+
+
+.input {
+    margin-bottom: 20px;
+    height: 30px;
+
+    width: 100%;
+}
+
+.actions {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.actions button {
+    height: 40px;
+    width: 100px;
+    margin-right: 30px;
+    font-size: 14px;
+}
+
+.actions a {
+    font-size: 14px;
+}
+
+
+/* Edit post */
+.App h1 {
+    margin-top: 30px;
+}
+
+label {
+    padding-bottom: 10px;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+textarea {
+    min-height: 280px;
+    margin-bottom: 20px;
+}
+
+
+/* -------------------------------------------- */
+/* Styles for desktop devices (768px and above) */
+@media (min-width: 768px) {
+
+    input {
+        width: 300px;
+    }
+
+    .actions button {
+        height: 50px;
+        width: 150px;
+        font-size: 16px;
+    }
+
+    .actions a {
+        font-size: 16px;
+    }
+
+    /* Edit post */
+    .App h1 {
+        margin-top: 50px;
+    }
+
+    .edit-input {
+        width: 100%;
+    }
+
+
+}

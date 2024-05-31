@@ -1,0 +1,26 @@
+/* Baseline mobile */
+
+.footer {
+    display: flex;
+    justify-content: center;
+
+    padding: 30px 0 30px 0;
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+    font-size: 14px;
+}
+
+.footer a {
+    padding: 0 10px 0 10px;
+}
+
+
+/* Styles for desktop devices (768px and above) */
+@media (min-width: 768px) {
+
+    .footer {
+        font-size: 16px;
+    }
+
+}
