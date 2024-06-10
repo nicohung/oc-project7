@@ -29,7 +29,7 @@ const EditPost = () => {
       return !!urlPattern.test(url);
     };
 
-
+    //Fecth post data from the server when the component mounts.
     useEffect(() => {
         const fetchPostData = async () => {
             try {
@@ -42,6 +42,7 @@ const EditPost = () => {
                 console.log(postData.user_id.toString());
                 console.log(user_id);
 
+                //check if the user is authorized to edit the post.
                 if (postData.user_id.toString() !== user_id) {
                   alert('You are not authorized to edit this post');
                   navigate('/');
@@ -60,6 +61,7 @@ const EditPost = () => {
         };
 
         fetchPostData(); // Call the function to fetch post data
+
     }, [postId, user_id, navigate]); // Listen for changes
 
     
@@ -85,7 +87,7 @@ const EditPost = () => {
       }
 
       // Image Alt validation
-      if (!image_alt) {
+      if (image_url && image_url !== 'Enter link here' && !image_alt) {
         validationErrors.image_alt = 'Please enter a description for the image.';
       }
 

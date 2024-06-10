@@ -1,10 +1,9 @@
 import '../styles/Form.css'
 import React, { Fragment, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../logo.png';
 
 const Register = ({setIsAuthenticated}) => {
-    const navigate = useNavigate();
     
     const [inputs, setInputs] = useState({
         email: "",
@@ -16,6 +15,8 @@ const Register = ({setIsAuthenticated}) => {
 
     const {email, password, name } = inputs;
 
+    //as the user writes in the fields, 'inputs' is updated with the values entered by the user. 
+    //keeps the 'inputs' in sync with what is entered in the form fields.
     const onChange = (e) => {
         setInputs({...inputs, [e.target.name] : e.target.value });
     }
@@ -25,6 +26,7 @@ const Register = ({setIsAuthenticated}) => {
         e.preventDefault()
 
         try {
+            //rename the keys to match the expect format on the server. 
             const body = { 
                 user_email: email, 
                 user_password: password, 
@@ -32,23 +34,27 @@ const Register = ({setIsAuthenticated}) => {
             };
             console.log(body);
     
+            //send data to the server
             const response = await fetch(`http://localhost:8000/auth/register`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(body)
             });
-      
-            console.log(response);
 
+            //handle server response, paseing to JSON
             const parseRes = await response.json();
             console.log(parseRes);
 
+            //check response
             if (response.status === 401) {
-                // If the login fails, set the alert message
-                setAlert("User already exists");
+                // If the login fails, set the alert message, which is "user already exists", as defined in jwtAuth.js
+                setAlert(parseRes.message);
                 setIsAuthenticated(false);
+
             } else {
-                //save the token to local storage, and use it to set setAuth to True. 
+                //else, take the token from the response and save it to local storage. 
+                //Also save user_id and user_name (used later on to post items and mark things as read/unread, etc)
+                //set the authentication to TRUE.
                 localStorage.setItem("token", parseRes.token);
                 setIsAuthenticated(true);
                 localStorage.setItem("user_id", parseRes.user_id);

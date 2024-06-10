@@ -3,7 +3,8 @@ const router = require("express"). Router()
 const pool = require('../../db');
 const bcrypt = require('bcrypt');
 const jwtGenerator = require('../utils/jwtGenerator');
-const validInfo = require('../middleware/validInfo'); //the middleware
+//middleware
+const validInfo = require('../middleware/validInfo'); 
 const authorization = require('../middleware/authorization');
 
 //registering
@@ -29,6 +30,7 @@ router.post('/register', validInfo, async (req, res) => {
         const newUser = await pool.query("INSERT INTO users (user_name, user_password, user_email) VALUES ($1, $2, $3) RETURNING *", [user_name, bcryptPassword, user_email] );
 
         //generating jwt token 
+        //access the 'rows' object within newUser, and the first object within the rows array, and finally the user_id
         const token = jwtGenerator(newUser.rows[0].user_id);
 
         //Return token, user_id, and user_name in the response
@@ -54,6 +56,7 @@ router.post('/login', validInfo, async (req, res) => {
         //check if the user exist (if not, throw error)
         const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [user_email]);
         
+        //if no result (user.rows has no data), then throw error.
         if (user.rows.length === 0) {
             return res.status(401).send({ message: "Password or Email is incorrect" })
         } 

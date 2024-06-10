@@ -49,12 +49,13 @@ const InputPost = () => {
     }
 
     // Image URL validation
+    // If there is an image_url, and it's not === to the placeholder text, and validateUrl returns False
     if (image_url && image_url !== 'Enter link here' && !validateUrl(image_url)) {
       validationErrors.image_url = 'Please enter a valid URL.';
     }
 
     // Image Alt validation
-    if (!image_alt) {
+    if (image_url && image_url !== 'Enter link here' && !image_alt) {
       validationErrors.image_alt = 'Please enter a description for the image.';
     }
 
@@ -68,6 +69,7 @@ const InputPost = () => {
 
     try {
       //set image_url to null if the value is "Enter link here"
+      //cleans up data for the database
       const finalImageUrl = (image_url === 'Enter link here' || image_url.trim() === '') ? null : image_url;
       const finalImageAlt = (image_url?.trim() === 'Enter link here' || image_url?.trim() === '') ? null : image_alt;
 

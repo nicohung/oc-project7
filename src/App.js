@@ -37,6 +37,8 @@ function App() {
     }
   }
   
+  //isAuth() is used on page refresh or initial load
+  //to check if the token in localStorage is still valid by sending a GET request to /auth/is-verify
   useEffect(() => {
     isAuth()
   })
@@ -51,8 +53,7 @@ function App() {
           <Route path='/editpost/:postId' element={<EditPost />} />
 
           {/* if isAuthenticated is false, return the Login component. Otherwise, if isAuthenticated is true, redirect to Listposts */}
-          {/* {...props} passes all the properties, so Login has access to all the routing information */}
-          {/* use render props since don't want it to remount */}
+          {/* Shares the setIsAuthenticated function to Login.js, so Login.js can update isAuthenticated from there. */}
           <Route exact path='/login' element={!isAuthenticated ? <Login setIsAuthenticated={setIsAuthenticated} /> : <Navigate to='/dashboard' />} />
           <Route exact path='/' element={!isAuthenticated ? <Login setIsAuthenticated={setIsAuthenticated} /> : <Navigate to='/dashboard' />} />
           <Route exact path='/register' element={!isAuthenticated ? <Register setIsAuthenticated={setIsAuthenticated} /> : <Navigate to='/login' />} />

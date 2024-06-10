@@ -38,7 +38,6 @@ app.post('/newpost', async (req, res) => {
 });
 
 
-
 // Get all posts with read_status for a specific user
 app.get("/allposts/:user_id", async (req, res) => {
     try {

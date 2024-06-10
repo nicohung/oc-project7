@@ -1,24 +1,22 @@
-CREATE DATABASE groupomania;
+CREATE DATABASE groupomania_db;
 
--- uuid_generate_v4() is a function that is running to create the uuid
 CREATE TABLE users (
-    user_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(), 
+    user_id SERIAL PRIMARY KEY, 
     user_name VARCHAR(255) NOT NULL,
     user_email VARCHAR(255) NOT NULL,
     user_password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Post (
-    post_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
+CREATE TABLE posts (
+    post_id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(user_id),
     text_content TEXT,
-    image_url VARCHAR(255),
+    image_url TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     is_new BOOLEAN DEFAULT TRUE,
     user_name TEXT,
     title VARCHAR(255),
-    image_alt TEXT,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+    image_alt TEXT
 );
 
 CREATE TABLE user_posts (
