@@ -56,9 +56,13 @@ const Register = ({setIsAuthenticated}) => {
                 //Also save user_id and user_name (used later on to post items and mark things as read/unread, etc)
                 //set the authentication to TRUE.
                 localStorage.setItem("token", parseRes.token);
-                setIsAuthenticated(true);
                 localStorage.setItem("user_id", parseRes.user_id);
                 localStorage.setItem("user_name", parseRes.user_name);
+
+                setIsAuthenticated(true);
+
+                // Clear any previous alert
+                setAlert("");
             }
 
 

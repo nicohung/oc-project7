@@ -139,9 +139,13 @@ const Dashboard = ({ setIsAuthenticated }) => {
     const getPosts = async () => {
         try {
             const response = await fetch(`http://localhost:8000/allposts/${user_id}`);
-            const jsonData = await response.json(); //parse the data into json
-            // console.log(jsonData);
+            // Check if response is OK
+            if (!response.ok) {
+                throw new Error(`Server error: ${response.status}`);
+            }
 
+            const jsonData = await response.json(); //parse the data into json
+        
             setPosts(jsonData);
 
         } catch (err) {

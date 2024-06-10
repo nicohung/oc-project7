@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
         //destructure the token, which lives in the header
         const jwtToken = req.header('token');
 
-        //if no token is found in the header, respond with 403 forbidden
+        //if no token is found in the request, respond with 403 forbidden
         if(!jwtToken) {
             return res.status(403).json('Not Authorized');
         }

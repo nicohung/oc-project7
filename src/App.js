@@ -20,17 +20,25 @@ function App() {
   //need to check the token at every refresh, and set the setAuthenticated to true.
   async function isAuth(){
     try{
-      //hit is-verify in jwtAuth.js
-      const response = await fetch("http://localhost:8000/auth/is-verify", {
-        method: "GET",
-        headers: { token: localStorage.token }
-      });
+      //check if token exists in localStorage
+      if (localStorage.token){
+        //hit is-verify in jwtAuth.js
+        const response = await fetch("http://localhost:8000/auth/is-verify", {
+          method: "GET",
+          headers: { token: localStorage.token }
+        });
 
-      const parseRes = await response.json();
-      // console.log(parseRes); //logs "true" if it's authenticated
+        const parseRes = await response.json();
+        // console.log(parseRes); //logs "true" if it's authenticated
 
-      //ternary operator, if parseRes is true, set auth true, otherwise set to false. 
-      parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+        //ternary operator, if parseRes is true, set auth true, otherwise set to false. 
+        parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+      
+      } else {
+        // If token doesn't exist, set isAuthenticated to false
+        setIsAuthenticated(false);
+      }
+      
 
     } catch (err) {
       console.error(err.message);

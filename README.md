@@ -2,10 +2,12 @@
 PostgreSQL installed on your machine.
 Access to psql (PostgreSQL command-line interface) or a PostgreSQL client like pgAdmin.
 
+
 # Run the SQL script on database.sql
 Creates a database called groupomania_db.
 Within it, 3 tables are created: users, posts, and user_posts.
 db.js is used to connect to groupomania_db.
+
 
 ### `npm start`
 Runs the app in the development mode.\
@@ -15,7 +17,14 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 
-### `node server`
+### `nodemon server`
 Runs the backend on port 8000.
 Open [http://localhost:8000] to see in browser. 
 
+
+# To test the features, login with these sample emails and passwords:
+nicolas@email.com
+password
+
+john@email.com
+password

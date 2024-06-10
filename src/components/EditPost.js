@@ -39,8 +39,8 @@ const EditPost = () => {
                 } 
 
                 const postData = await response.json();
-                console.log(postData.user_id.toString());
-                console.log(user_id);
+                // console.log(postData.user_id.toString());
+                // console.log(user_id);
 
                 //check if the user is authorized to edit the post.
                 if (postData.user_id.toString() !== user_id) {
@@ -50,10 +50,10 @@ const EditPost = () => {
                 }
 
                 setPost(postData);
-                setTitle(postData.title);
-                setTextContent(postData.text_content);
-                setUrl(postData.image_url);
-                setAlt(postData.image_alt);
+                setTitle(postData.title || '');
+                setTextContent(postData.text_content || '');
+                setUrl(postData.image_url || '');
+                setAlt(postData.image_alt || '');
 
             } catch (error) {
                 console.error(error.message);

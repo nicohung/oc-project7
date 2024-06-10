@@ -38,10 +38,12 @@ app.post('/newpost', async (req, res) => {
 });
 
 
+
 // Get all posts with read_status for a specific user
 app.get("/allposts/:user_id", async (req, res) => {
     try {
         const { user_id } = req.params;
+
         const posts = await pool.query(
             `
             -- select all columns from posts table, and the read_status column from the user_posts table
@@ -58,7 +60,12 @@ app.get("/allposts/:user_id", async (req, res) => {
             [user_id],
         );
 
-        res.json(posts.rows);
+        if (posts.rows.length > 0) {
+            res.json(posts.rows);
+            // console.log(posts.rows);
+        } else {
+            res.status(404).json({ message: "No posts found for the specified user" });
+        }
         
     } catch (err) {
         console.error(err.message);
